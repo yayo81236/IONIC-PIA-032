@@ -26,6 +26,14 @@ const routes: Routes = [
   {
     path: 'receptor',
     loadChildren: () => import('./receptor/receptor.module').then( m => m.ReceptorPageModule)
+  },
+  {
+    path: 'pelicula',
+    loadChildren: () => import('./pelicula/pelicula.module').then( m => m.PeliculaPageModule)
+  },
+  {
+    path: 'detalle-pelicula',
+    loadChildren: () => import('./detalle-pelicula/detalle-pelicula.module').then( m => m.DetallePeliculaPageModule)
   }
 
 
