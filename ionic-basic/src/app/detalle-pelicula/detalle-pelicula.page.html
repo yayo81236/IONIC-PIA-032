@@ -1,19 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>detalle-pelicula</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <ion-back-button defaultHref="Pelicula"></ion-back-button>
-  <ion-grid>
-      <ion-row>
-          <ion-col>
+<ion-item></ion-item>
+    <ion-item>
+        <ion-back-button text="Película" defaultHref="pelicula"></ion-back-button>
+    </ion-item>
+    <ion-grid>
+    <ion-row>
+        <ion-col>
               <ion-img [src]="pelicula.image"></ion-img>
-          </ion-col>
-      </ion-row>
-      <ion-row>
-          <ion-col>
               <ion-list>
                   <ion-item *ngFor="let trama of pelicula.tramas">
                       {{trama}}
@@ -21,4 +14,4 @@
               </ion-list>
           </ion-col>
       </ion-row>
-  </ion-grid>
+</ion-grid>
