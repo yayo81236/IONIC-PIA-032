@@ -29,6 +29,7 @@ export class PeliculaPage implements OnInit {
     this.menuService.setTitle("detalle-pelicula");
     this.router.navigate(['/detalle-pelicula'], 
     { queryParams: { id: id } });
+    this.router.navigate(['/main/detalle-pelicula/'+id])
 
   }
 
