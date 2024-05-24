@@ -47,6 +47,10 @@ const routes: Routes = [
       {
         path: 'detalle-pelicula',
         loadChildren: () => import('./detalle-pelicula/detalle-pelicula.module').then( m => m.DetallePeliculaPageModule)
+      },
+      {
+        path: 'destino-api',
+        loadChildren: () => import('./destino-api/destino-api.module').then( m => m.DestinoApiPageModule)
       }
     ],
     canActivate: [SeguridadRutasGuard]
@@ -62,7 +66,12 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./register/register.module').then( m => m.RegisterPageModule)
+  },
+  {
+    path: 'destino-api',
+    loadChildren: () => import('./destino-api/destino-api.module').then( m => m.DestinoApiPageModule)
   }
+
 ];
 
 @NgModule({
