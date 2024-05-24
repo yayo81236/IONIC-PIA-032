@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Router } from '@angular/router';
 import { AuthFirebaseService } from '../auth-firebase.service';
-import { MenuService } from '../menu.service';
+import { MenuService } from '../service/menu.service';
 
 @Component({
   selector: 'app-logout',

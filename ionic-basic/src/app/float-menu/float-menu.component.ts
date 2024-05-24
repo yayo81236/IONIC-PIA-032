@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Menu } from 'src/app/interface/menu';
 import { Subscription } from 'rxjs';
 import { onAuthStateChanged } from 'firebase/auth';
-import { MenuService } from 'src/app/menu.service';
+import { MenuService } from 'src/app/service/menu.service';
 import { AuthFirebaseService } from 'src/app/auth-firebase.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthFirebaseService } from 'src/app/auth-firebase.service';
   templateUrl: './float-menu.component.html',
   styleUrls: ['./float-menu.component.scss'],
 })
-export class FloatMenuComponent  implements OnInit, OnDestroy {
+export class FloatMenuComponent  implements OnInit {
   titleMenu: string='home';
 
   public isLoged : any = false;
