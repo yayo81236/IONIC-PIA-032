@@ -14,9 +14,10 @@ const routes: Routes = [
       }
       ,
       {
-        path: 'pelicula',
-        loadChildren: () => import('../pelicula/pelicula.module').then(m=>m.PeliculaPageModule)
-      },
+      path: 'galeria',
+      loadChildren: () => import('../galeria/galeria.module').then(m=>m.GaleriaPageModule)
+      }
+      ,
       {
         path: 'presupuesto',
         loadChildren: () => import('../presupuesto/presupuesto.module').then(m=>m.PresupuestoPageModule)
