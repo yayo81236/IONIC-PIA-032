@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Lugar } from '../interface/lugar';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthFirebaseService } from '../auth-firebase.service';
+import { GooglemapsComponent } from '../googlemaps/googlemaps.component';
+import { ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-destinos',
@@ -19,7 +21,8 @@ export class DestinosPage implements OnInit {
   longitud: number = 0;
   constructor(
     private authService: AuthFirebaseService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private modalController: ModalController
   ) { }
 
   ngOnInit() {
@@ -81,6 +84,8 @@ export class DestinosPage implements OnInit {
   }
   
   editarLugar(id: any, lugar: any) {
+    this.lugar.latitud = this.latitud;
+    this.lugar.longitud = this.longitud;
     this.editando = true;
     this.lugar = lugar;
     this.estado = "Editar el lugar";
@@ -102,6 +107,8 @@ export class DestinosPage implements OnInit {
     this.editando = false;
     this.ionicForm.reset();
     this.lugar = new Lugar();
+    this.latitud = 0;
+    this.longitud = 0;
   }
 
   getPosition(): Promise<any> {
@@ -119,5 +126,29 @@ export class DestinosPage implements OnInit {
 			}, {timeout: 5000, enableHighAccuracy: true });
 		});
 	}
+
+  async addDirection(){
+    let positionInput: any = {
+      lat: this.editando? this.latitud:0,
+      lng: this.editando? this.longitud :0
+    };
+
+    const modalAdd = await this.modalController.create({
+      component: GooglemapsComponent,
+      mode: 'ios',
+      componentProps: {position: positionInput} 
+    });
+
+    await modalAdd.present();
+
+    const {data} = await modalAdd.onWillDismiss();
+
+    if(data){
+      console.log('data->', data);
+      this.longitud = data.pos.lng;
+      this.latitud = data.pos.lat;
+      console.log('Datos de ubiciación actualizados, latitud: '+this.latitud+' \nlongitud:'+this.longitud);
+    }
+  } 
 
 }
