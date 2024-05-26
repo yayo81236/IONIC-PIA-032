@@ -3,6 +3,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { Router } from '@angular/router';
 import { AuthFirebaseService } from '../auth-firebase.service';
 import { MenuService } from '../menu.service';
+import { StorageService } from '../service/storage.service';
 
 @Component({
   selector: 'app-logout',
@@ -15,7 +16,8 @@ export class LogoutPage implements OnInit {
   constructor(
     private router: Router,
     private authService: AuthFirebaseService,
-    private menuService: MenuService
+    private menuService: MenuService,
+    private storageService: StorageService
   ) { 
     onAuthStateChanged(this.authService.getStateAuth(), user=>{
       if(user!=null && user != undefined){
@@ -32,6 +34,9 @@ export class LogoutPage implements OnInit {
       console.log("Logout!");
       this.menuService.setTitle("login");
       this.router.navigateByUrl('/login');
+      console.info('Usuario a borrar:'+this.storageService.getValue('usuario'));
+      this.storageService.borrarItem('usuario');
+      this.storageService.limpiarStorage();
     }).catch(error=>{
 
     });
