@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-list>
-      <ion-item *ngFor="let pelicula of peliculas" [routerLink]="['/detalle-pelicula', pelicula.id]">
+    <ion-item *ngFor="let pelicula of peliculas" (click) = "irDetallePelicula(pelicula.id)">
           {{pelicula.nombre}}
       </ion-item>
   </ion-list>

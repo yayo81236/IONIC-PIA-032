@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Menu } from 'src/app/interface/menu';
 import { Subscription } from 'rxjs';
 import { onAuthStateChanged } from 'firebase/auth';
-import { MenuService } from 'src/app/menu.service';
+import { MenuService } from 'src/app/service/menu.service';
 import { AuthFirebaseService } from 'src/app/auth-firebase.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { AuthFirebaseService } from 'src/app/auth-firebase.service';
   templateUrl: './float-menu.component.html',
   styleUrls: ['./float-menu.component.scss'],
 })
-export class FloatMenuComponent  implements OnInit, OnDestroy {
+export class FloatMenuComponent  implements OnInit {
   titleMenu: string='home';
 
   public isLoged : any = false;
@@ -63,15 +63,19 @@ export class FloatMenuComponent  implements OnInit, OnDestroy {
     onAuthStateChanged(this.autService.getStateAuth(), user=>{
       if(user!=null && user != undefined){
         this.datosMenu =[
-          {nombre: 'Alumnos',enlace:'/alumnos',
+          {nombre: 'Alumnos',enlace:'/main/alumnos',
     icono:'school-outline'},
-      {nombre: 'Películas',enlace:'/pelicula',
+    {nombre: 'Peliculas',enlace:'/main/pelicula',
       icono:'restaurant-outline'},
-      {nombre: 'inicio',enlace:'/inicio',
+      {nombre: 'inicio',enlace:'/main/inicio',
       icono:'navigate-outline'},
-      {nombre: 'Tabs',enlace:'/tabs',
+      {nombre: 'Turismo-firestore',enlace:'/main/destinos',
+      icono:'airplane'},
+      {nombre: 'Turismo-api',enlace:'main/destino-api',
+      icono:'airplane'},
+      {nombre: 'Tabs',enlace:'/main/tabs',
       icono:'folder-outline'},
-      {nombre: 'Presupuesto',enlace:'/presupuesto',
+      {nombre: 'Presupuesto',enlace:'/main/presupuesto',
     icono:'cash-outline'},
           {nombre: 'logout',enlace:'/logout',
           icono:'log-out-outline'}
